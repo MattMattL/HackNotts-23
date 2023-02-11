@@ -9,7 +9,7 @@ import pygame
 class LParticle(ParticleHandler):
 
 	def __init__(self):
-		self.ID = "EXAMPLE PARTICLE"
+		self.ID = "L PARTICLE"
 		self.posY = random.randint(0, 600)
 		self.posX = random.randint(0, 1000)
 		self.pos = np.array([])
@@ -26,18 +26,18 @@ class LParticle(ParticleHandler):
 		return False
 
 	def F(self, x, y):
-		r = np.array([x - self.posX, y - self.posY])
-		rn = np.linalg.norm(r)
+		r = [x - self.posX, y - self.posY]
+		rn = r[0]**2 + r[1]**2
 
 		return 0*r if rn == 0 else (1 / rn**3) * r
 
-	def update(self, particles, dt):
+	def update(self, pGroups, dt):
 		""" Called at the start of each frame. Update x and y here """
-		for pType in particles:
+		for pType in pGroups:
 			for particle in pType:
 				dx, dy = particle.F(self.posX, self.posY) * dt / 1000
-				self.posX += 1000 * dx
-				self.posY += 1000 * dy
+				self.posX += 0.01 * dx
+				self.posY += 0.01 * dy
 
 				# print(self.posX, self.posY)
 

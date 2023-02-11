@@ -17,8 +17,8 @@ def main():
 	shouldContinueRunning = True
 	deltaTime = pygame.time.get_ticks()
 
-	particles = [[ExampleParticle() for _ in range(5)], \
-				 [LParticle() for _ in range(10)]]
+	particles = [[ExampleParticle() for _ in range(100)], \
+				 [LParticle() for _ in range(100)]]
 
 	while shouldContinueRunning:
 		# Initialisations

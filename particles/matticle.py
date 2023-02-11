@@ -22,9 +22,9 @@ class MattsParticle(ParticleHandler):
 
 		return False
 
-	def update(self, particles, dt):
+	def update(self, pGroups, dt):
 		""" Called at the start of each frame. Update x and y here """
-		for pType in particles:
+		for pType in pGroups:
 			for particle in pType:
 
 				if particle.ID == "EXAMPLE PARTICLE":

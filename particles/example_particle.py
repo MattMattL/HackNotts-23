@@ -11,8 +11,8 @@ class ExampleParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "EXAMPLE PARTICLE"
-		self.posY = 300
-		self.posX = 500
+		self.posY = random.randint(0, 1000)
+		self.posX = random.randint(0, 600)
 
 	# override all the initialisers:
 	def start(self):
@@ -29,17 +29,15 @@ class ExampleParticle(ParticleHandler):
 		r = np.array([x - self.posX, y - self.posY])
 		rn = np.linalg.norm(r)
 
-		print(r, rn)
+		return (1 / rn) * r
 
-		return (1 / rn**3) * r
-
-	def update(self, particles, dt):
+	def update(self, pGroups, dt):
 		""" Called at the start of each frame. Update x and y here """
-		for pType in particles:
+		for pType in pGroups:
 			for particle in pType:
 				# dx , dy = particle.F(self.posX,self.posY)
-				self.posX += random.randint(-2, 2)
-				self.posY += random.randint(-2, 2)
+				self.posX += random.randint(-1, 1)
+				self.posY += random.randint(-1, 1)
 				pass
 
 	def draw(self, window):
