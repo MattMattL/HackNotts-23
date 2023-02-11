@@ -2,6 +2,7 @@ import time
 import pygame
 
 from particles.example_particle import ExampleParticle
+from particles.matticle import MattsParticle
 
 # import circle_test
 # circle_test.circleTest()
@@ -13,12 +14,14 @@ def main():
 
 	# Pre-initialisations
 	shouldContinueRunning = True
+	deltaTime = pygame.time.get_ticks()
 
 	particles = [[ExampleParticle() for _ in range(3)], \
-			[ExampleParticle() for _ in range(2)]]
+				 [MattsParticle() for _ in range(2)]]
 
 	while shouldContinueRunning:
 		# Initialisations
+		deltaTime = pygame.time.get_ticks() - deltaTime
 		window.fill((0, 0, 0))
 		pygame.time.delay(33) # 30 FPS
 
@@ -33,7 +36,7 @@ def main():
 
 			# pass the array to target particles
 			for particle in target:
-				particle.update(referenceParticles)
+				particle.update(referenceParticles, deltaTime)
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:

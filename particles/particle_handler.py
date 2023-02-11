@@ -16,7 +16,7 @@ class ParticleHandler():
 	def isAffectedBy(self, particleID):
 		return False
 
-	def update(self, particles):
+	def update(self, particles, dt):
 		pass
 
 	def postUpdate(self):

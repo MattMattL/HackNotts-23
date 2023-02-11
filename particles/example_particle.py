@@ -20,7 +20,7 @@ class ExampleParticle(ParticleHandler):
 
 		return False
 
-	def update(self, particles):
+	def update(self, particles, dt):
 		""" Called at the start of each frame. Update x and y here """
 		for pType in particles:
 			for particle in pType:
