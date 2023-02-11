@@ -17,7 +17,7 @@ def main():
 	shouldContinueRunning = True
 	deltaTime = pygame.time.get_ticks()
 
-	particles = [[GreenParticle() for _ in range(100)], \
+	particles = [[GreenParticle() for _ in range(40)], \
 				 [YellowParticle() for _ in range(100)], \
 				 [RedParticle() for _ in range(100)]]
 
@@ -25,7 +25,7 @@ def main():
 		# Initialisations
 		deltaTime = pygame.time.get_ticks() - deltaTime
 		window.fill((0, 0, 0))
-		pygame.time.delay(33) # 30 FPS
+		pygame.time.delay(20) # 30 FPS
 
 		# Update
 		for target in particles:
@@ -38,7 +38,7 @@ def main():
 
 			# pass the array to target particles
 			for particle in target:
-				particle.update(referenceParticles, deltaTime)
+				particle.update(referenceParticles, deltaTime/1000)
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
