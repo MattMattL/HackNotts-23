@@ -16,6 +16,11 @@ class ParticleHandler():
 	def isAffectedBy(self, particleID):
 		return False
 
+	def baseField(self):
+		Fx = self.posY - 600/2
+		Fy = -self.posX + 1000/2
+		return Fx,Fy
+
 	def update(self, particles, dt):
 		pass
 
