@@ -1,5 +1,6 @@
 # import the child classes
 from particles.particle_handler import ParticleHandler
+import numpy
 
 # extend your particle class with ParticleHandler
 class ExampleParticle(ParticleHandler):
@@ -24,7 +25,9 @@ class ExampleParticle(ParticleHandler):
 		""" Called at the start of each frame. Update x and y here """
 		for pType in particles:
 			for particle in pType:
-				# update x and y
+				dx , dy = particle.F(self.posX,self.posY) 
+				self.posX += dx
+				self.posY += dy
 				pass
 
 	def postUpdate(self):
