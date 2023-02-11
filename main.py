@@ -28,8 +28,8 @@ def main():
 
 			# find and save particle types that affect 'target'
 			for ref in particles:
-				 if target[0].isAffectedBy(ref[0].ID):
-					 referenceParticles.append(ref)
+				if target[0].isAffectedBy(ref[0].ID):
+					referenceParticles.append(ref)
 
 			# pass the array to target particles
 			for particle in target:
