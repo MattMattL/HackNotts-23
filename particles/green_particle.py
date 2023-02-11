@@ -7,7 +7,7 @@ import pygame
 from particles.particle_handler import ParticleHandler
 
 # extend your particle class with ParticleHandler
-class ExampleParticle(ParticleHandler):
+class GreenParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "EXAMPLE PARTICLE"
@@ -36,12 +36,12 @@ class ExampleParticle(ParticleHandler):
 		for pType in pGroups:
 			for particle in pType:
 				# dx , dy = particle.F(self.posX,self.posY)
-				self.posX += random.randint(-1, 1)
-				self.posY += random.randint(-1, 1)
-				pass
+				dxB, dyB = self.baseField()
+				self.posX += dxB / 10000
+				self.posY += dyB / 10000
 
 	def draw(self, window):
-		return pygame.draw.circle(window, color=(0, 255, 0), center=(self.posX, self.posY), radius=5)
+		pygame.draw.circle(window, color=(0, 255, 0), center=(self.posX, self.posY), radius=5)
 
 	def postUpdate(self):
 		""" Called at the end of each frame """

@@ -1,9 +1,9 @@
 import time
 import pygame
 
-from particles.example_particle import ExampleParticle
-from particles.matticle import MattsParticle
-from particles.LParticle import LParticle
+from particles.green_particle import GreenParticle
+from particles.yellow_particle import YellowParticle
+from particles.red_particle import RedParticle
 
 # import circle_test
 # circle_test.circleTest()
@@ -17,8 +17,9 @@ def main():
 	shouldContinueRunning = True
 	deltaTime = pygame.time.get_ticks()
 
-	particles = [[ExampleParticle() for _ in range(100)], \
-				 [LParticle() for _ in range(100)]]
+	particles = [[GreenParticle() for _ in range(100)], \
+				 [YellowParticle() for _ in range(100)], \
+				 [RedParticle() for _ in range(100)]]
 
 	while shouldContinueRunning:
 		# Initialisations

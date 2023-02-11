@@ -6,7 +6,7 @@ import numpy as np
 import pygame
 
 # extend your particle class with ParticleHandler
-class LParticle(ParticleHandler):
+class RedParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "L PARTICLE"

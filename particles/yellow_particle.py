@@ -4,7 +4,7 @@ import pygame
 
 from particles.particle_handler import ParticleHandler
 
-class MattsParticle(ParticleHandler):
+class YellowParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "MATTS PARTICLE"
@@ -34,7 +34,7 @@ class MattsParticle(ParticleHandler):
 					self.posY += 10/deltaY
 
 	def draw(self, window):
-		return pygame.draw.circle(window, color=(100, 255, 200), center=(self.posX, self.posY), radius=3)
+		return pygame.draw.circle(window, color=(255, 255, 0), center=(self.posX, self.posY), radius=3)
 
 
 	def postUpdate(self):
