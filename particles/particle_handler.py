@@ -7,8 +7,6 @@ class ParticleHandler():
 		self.posY = None
 		self.posX = None
 
-		self.color = (255, 255, 255)
-		self.size = 5
 
 	def start(self):
 		pass
@@ -16,7 +14,12 @@ class ParticleHandler():
 	def isAffectedBy(self, particleID):
 		return False
 
-	def update(self, pGroups, dt):
+	def baseField(self):
+		Fx = self.posY - 600/2
+		Fy = -self.posX + 1000/2
+		return Fx,Fy
+
+	def update(self, particles, dt):
 		pass
 
 	def postUpdate(self):
