@@ -3,15 +3,20 @@
 class ParticleHandler():
 
 	def __init__(self):
+		self.ID = None
 		self.posY = None
 		self.posX = None
+
 		self.color = (255, 255, 255)
 		self.size = 5
 
 	def start(self):
 		pass
 
-	def update(self):
+	def isAffectedBy(self, particleID):
+		return False
+
+	def update(self, particles):
 		pass
 
 	def postUpdate(self):
