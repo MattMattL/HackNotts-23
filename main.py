@@ -3,6 +3,7 @@ import pygame
 
 from particles.example_particle import ExampleParticle
 from particles.matticle import MattsParticle
+from particles.LParticle import LParticle
 
 # import circle_test
 # circle_test.circleTest()
@@ -16,14 +17,14 @@ def main():
 	shouldContinueRunning = True
 	deltaTime = pygame.time.get_ticks()
 
-	particles = [[ExampleParticle() for _ in range(10)], \
-				 [MattsParticle() for _ in range(10)]]
+	particles = [[ExampleParticle() for _ in range(5)], \
+				 [LParticle() for _ in range(10)]]
 
 	while shouldContinueRunning:
 		# Initialisations
 		deltaTime = pygame.time.get_ticks() - deltaTime
 		window.fill((0, 0, 0))
-		pygame.time.delay(20) # 30 FPS
+		pygame.time.delay(33) # 30 FPS
 
 		# Update
 		for target in particles:

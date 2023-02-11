@@ -1,7 +1,7 @@
 # import the child classes
 import random
 
-import numpy
+import numpy as np
 import pygame
 
 from particles.particle_handler import ParticleHandler
@@ -11,7 +11,7 @@ class ExampleParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "EXAMPLE PARTICLE"
-		self.posY = 250
+		self.posY = 300
 		self.posX = 500
 
 	# override all the initialisers:
@@ -25,6 +25,14 @@ class ExampleParticle(ParticleHandler):
 
 		return False
 
+	def F(self,x,y):
+		r = np.array([x - self.posX, y - self.posY])
+		rn = np.linalg.norm(r)
+
+		print(r, rn)
+
+		return (1 / rn**3) * r
+
 	def update(self, particles, dt):
 		""" Called at the start of each frame. Update x and y here """
 		for pType in particles:
@@ -35,7 +43,7 @@ class ExampleParticle(ParticleHandler):
 				pass
 
 	def draw(self, window):
-		return pygame.draw.circle(window, color=(255, 100, 200), center=(self.posX, self.posY), radius=5)
+		return pygame.draw.circle(window, color=(0, 255, 0), center=(self.posX, self.posY), radius=5)
 
 	def postUpdate(self):
 		""" Called at the end of each frame """
