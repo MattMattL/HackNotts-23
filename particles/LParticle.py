@@ -35,9 +35,9 @@ class LParticle(ParticleHandler):
 		""" Called at the start of each frame. Update x and y here """
 		for pType in pGroups:
 			for particle in pType:
-				dx, dy = particle.F(self.posX, self.posY) * dt / 1000
-				self.posX += 0.01 * dx
-				self.posY += 0.01 * dy
+				dx, dy = particle.F(self.posX, self.posY)
+				self.posX += 1000 * dx * dt / 1000
+				self.posY += 1000 * dy * dt / 1000
 
 				# print(self.posX, self.posY)
 

@@ -25,11 +25,11 @@ class ExampleParticle(ParticleHandler):
 
 		return False
 
-	def F(self,x,y):
-		r = np.array([x - self.posX, y - self.posY])
-		rn = np.linalg.norm(r)
+	def F(self, x, y):
+		rx, ry = x - self.posX, y - self.posY
+		rn = (rx*rx + ry*ry)**0.5
 
-		return (1 / rn) * r
+		return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
 
 	def update(self, pGroups, dt):
 		""" Called at the start of each frame. Update x and y here """
