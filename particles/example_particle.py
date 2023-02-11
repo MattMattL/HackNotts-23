@@ -22,7 +22,10 @@ class ExampleParticle(ParticleHandler):
 
 	def update(self, particles):
 		""" Called at the start of each frame. Update x and y here """
-		pass
+		for type in particles:
+			for particle in type:
+				# update x and y
+				pass
 
 	def postUpdate(self):
 		""" Called at the end of each frame """

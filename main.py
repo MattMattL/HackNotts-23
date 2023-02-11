@@ -1,21 +1,12 @@
 import time
 import pygame
 
+from particles.example_particle import ExampleParticle
+
 # import circle_test
 # circle_test.circleTest()
 
-def preInit():
-	pass
-
-def init():
-	pass
-
-def postInit():
-	pygame.display.update()
-	pass
-
 def main():
-
 	pygame.init()
 	window = pygame.display.set_mode((1000, 600))
 	pygame.display.set_caption("Conway's Particles just like Schrodinger's Cat")
@@ -23,14 +14,27 @@ def main():
 	# Pre-initialisations
 	shouldContinueRunning = True
 
-	preInit()
+	particles = [[ExampleParticle() for _ in range(3)], \
+			[ExampleParticle() for _ in range(2)]]
 
 	while shouldContinueRunning:
 		# Initialisations
-		pygame.time.delay(int(1000 / 30)) # 30 FPS
-		init()
+		window.fill((0, 0, 0))
+		pygame.time.delay(33) # 30 FPS
 
-		# Run important stuff
+		# Update
+		for target in particles:
+			referenceParticles = []
+
+			# find and save particle types that affect 'target'
+			for ref in particles:
+				 if target[0].isAffectedBy(ref[0].ID):
+					 referenceParticles.append(ref)
+
+			# pass the array to target particles
+			for particle in target:
+				particle.update(referenceParticles)
+
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				shouldContinueRunning = False
@@ -38,8 +42,7 @@ def main():
 			keysPressed = pygame.key.get_pressed()
 
 		# Post-initialisations
-		postInit()
-		window.fill((0, 0, 0))
+		pygame.display.update()
 
 	pygame.quit()
 
