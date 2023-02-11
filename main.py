@@ -38,9 +38,8 @@ def main():
 			keysPressed = pygame.key.get_pressed()
 
 		# Post-initialisations
-		window.fill((0, 0, 0))
-
 		postInit()
+		window.fill((0, 0, 0))
 
 	pygame.quit()
 
