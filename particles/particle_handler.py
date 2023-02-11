@@ -28,9 +28,10 @@ class ParticleHandler():
 
 		for pType in pGroups:
 			for particle in pType:
-				deltaX, deltaY = particle.F(self.posX, self.posY)
-				self.posX += particle.m*deltaX*dt
-				self.posY += particle.m*deltaY*dt
+				if (self.posX != particle.posX and self.posY != particle.posY):
+					deltaX, deltaY = particle.F(self.posX, self.posY)
+					self.posX += particle.m*deltaX*dt
+					self.posY += particle.m*deltaY*dt
 
 	def postUpdate(self):
 		pass
