@@ -1,5 +1,6 @@
 # import the child classes
 import random
+import math
 
 import numpy as np
 import pygame
@@ -11,9 +12,9 @@ class GreenParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "GREEN PARTICLE"
-		self.posY = random.randint(0, 1000)
-		self.posX = random.randint(0, 600)
-		self.m = 800
+		self.posY = random.randint(0, 1600)
+		self.posX = random.randint(0, 1000)
+		self.m = 10
 
 	# override all the initialisers:
 	def start(self):
@@ -27,9 +28,16 @@ class GreenParticle(ParticleHandler):
 
 	def F(self, x, y):
 		rx, ry = x - self.posX, y - self.posY
-		rn = (rx*rx + ry*ry)**0.5
+		rn = (rx*rx + ry*ry)
 
-		return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
+		fx, fy = 20 * math.sin(rx)/(rn+1), 20 * math.sin(ry)/(rn+1)
+
+		if rn <= 80: # repel
+			return fx, fy
+		elif rn <= 140: # attract
+			return fx, fy
+		else:
+			return fx, fy
 
 	def draw(self, window):
 		pygame.draw.circle(window, color=(0, 255, 0), center=(self.posX, self.posY), radius=5)

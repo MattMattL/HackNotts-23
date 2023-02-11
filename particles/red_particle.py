@@ -11,9 +11,9 @@ class RedParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "RED PARTICLE"
-		self.posY = random.randint(0, 600)
-		self.posX = random.randint(0, 1000)
-		self.m = 500
+		self.posY = random.randint(0, 1000)
+		self.posX = random.randint(0, 1600)
+		self.m = 20
 
 	# override all the initialisers:
 	def start(self):
@@ -26,9 +26,15 @@ class RedParticle(ParticleHandler):
 		return False
 
 	def F(self, x, y):
-		dx, dy = self.posX - x, self.posY - y
+		rx, ry = -x + self.posX, -y + self.posY
+		rn = (rx*rx + ry*ry)
 
-		return dx*math.exp(-dx*dx), dy*math.exp(-dy*dy)
+		if rn <= 5: # repel
+			return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
+		elif rn <= 10: # attract
+			return (0, 0) if rn == 0 else ((-1 / rn**3)*rx, (-1 / rn**3)*ry)
+		else:
+			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
 
 	def draw(self, window):
 		return pygame.draw.circle(window, color=(255, 0, 0), center=(self.posX, self.posY), radius=2)

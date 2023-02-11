@@ -10,14 +10,14 @@ from particles.red_particle import RedParticle
 
 def main():
 	pygame.init()
-	window = pygame.display.set_mode((1000, 600))
+	window = pygame.display.set_mode((1500, 1000))
 	pygame.display.set_caption("Conway's Particles just like Schrodinger's Cat")
 
 	# Pre-initialisations
 	shouldContinueRunning = True
 	deltaTime = pygame.time.get_ticks()
 
-	particles = [[GreenParticle() for _ in range(40)], \
+	particles = [[GreenParticle() for _ in range(100)], \
 				 [YellowParticle() for _ in range(100)], \
 				 [RedParticle() for _ in range(100)]]
 
