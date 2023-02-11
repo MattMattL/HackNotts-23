@@ -15,8 +15,8 @@ class ParticleHandler():
 		return False
 
 	def baseField(self):
-		Fx = self.posY - 600/2
-		Fy = -self.posX + 1000/2
+		Fx = self.posY - 300
+		Fy = -self.posX + 500
 		return Fx,Fy
 
 	def update(self, particles, dt):
