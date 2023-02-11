@@ -1,14 +1,18 @@
 # import the child classes
-from particles.particle_handler import ParticleHandler
+import random
+
 import numpy
+import pygame
+
+from particles.particle_handler import ParticleHandler
 
 # extend your particle class with ParticleHandler
 class ExampleParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "EXAMPLE PARTICLE"
-		self.posY = 300
-		self.posX = 300
+		self.posY = 250
+		self.posX = 500
 
 	# override all the initialisers:
 	def start(self):
@@ -25,10 +29,13 @@ class ExampleParticle(ParticleHandler):
 		""" Called at the start of each frame. Update x and y here """
 		for pType in particles:
 			for particle in pType:
-				dx , dy = particle.F(self.posX,self.posY) 
-				self.posX += dx
-				self.posY += dy
+				# dx , dy = particle.F(self.posX,self.posY)
+				self.posX += random.randint(-2, 2)
+				self.posY += random.randint(-2, 2)
 				pass
+
+	def draw(self, window):
+		return pygame.draw.circle(window, color=(255, 100, 200), center=(self.posX, self.posY), radius=5)
 
 	def postUpdate(self):
 		""" Called at the end of each frame """

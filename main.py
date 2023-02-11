@@ -16,14 +16,14 @@ def main():
 	shouldContinueRunning = True
 	deltaTime = pygame.time.get_ticks()
 
-	particles = [[ExampleParticle() for _ in range(3)], \
-				 [MattsParticle() for _ in range(2)]]
+	particles = [[ExampleParticle() for _ in range(10)], \
+				 [MattsParticle() for _ in range(10)]]
 
 	while shouldContinueRunning:
 		# Initialisations
 		deltaTime = pygame.time.get_ticks() - deltaTime
 		window.fill((0, 0, 0))
-		pygame.time.delay(33) # 30 FPS
+		pygame.time.delay(20) # 30 FPS
 
 		# Update
 		for target in particles:
@@ -43,6 +43,11 @@ def main():
 				shouldContinueRunning = False
 
 			keysPressed = pygame.key.get_pressed()
+
+		# Draw particles
+		for pType in particles:
+			for particle in pType:
+				particle.draw(window)
 
 		# Post-initialisations
 		pygame.display.update()

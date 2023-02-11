@@ -1,12 +1,15 @@
+import math
 import random
+import pygame
+
 from particles.particle_handler import ParticleHandler
 
 class MattsParticle(ParticleHandler):
 
 	def __init__(self):
 		self.ID = "MATTS PARTICLE"
-		self.posX = random.randint(100, 900)
-		self.posY = random.randint(100, 400)
+		self.posX = random.randint(0, 1000)
+		self.posY = random.randint(0, 500)
 
 	# override all the initialisers:
 	def start(self):
@@ -14,8 +17,8 @@ class MattsParticle(ParticleHandler):
 		pass
 
 	def isAffectedBy(self, particleID):
-		if particleID == "EXAMPLE PARTICLE": return False
-		if particleID == "MATTS PARTICLE": return True
+		if particleID == "EXAMPLE PARTICLE": return True
+		if particleID == "MATTS PARTICLE": return False
 
 		return False
 
@@ -24,14 +27,14 @@ class MattsParticle(ParticleHandler):
 		for pType in particles:
 			for particle in pType:
 
-				if particle.ID == "MATTS PARTICLE":
+				if particle.ID == "EXAMPLE PARTICLE":
 					deltaX, deltaY = particle.posX - self.posX, particle.posY - self.posY
 
-					if deltaX != 0:
-						self.posX += 1/deltaX
+					self.posX += 10/deltaX
+					self.posY += 10/deltaY
 
-					if deltaY != 0:
-						self.posY += 1/deltaY
+	def draw(self, window):
+		return pygame.draw.circle(window, color=(100, 255, 200), center=(self.posX, self.posY), radius=3)
 
 
 	def postUpdate(self):
