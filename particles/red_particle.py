@@ -13,7 +13,7 @@ class RedParticle(ParticleHandler):
 		self.ID = "RED PARTICLE"
 		self.posY = random.randint(0, 600)
 		self.posX = random.randint(0, 1000)
-		self.pos = np.array([])
+		self.m = 500
 
 	# override all the initialisers:
 	def start(self):
@@ -21,8 +21,7 @@ class RedParticle(ParticleHandler):
 		pass
 
 	def isAffectedBy(self, particleID):
-		if particleID == "EXAMPLE PARTICLE": return True
-		if particleID == "RED PARTICLE": return True
+		if particleID in ["RED PARTICLE", "GREEN PARTICLE", "YELLOW PARTICLE"] : return True
 
 		return False
 
@@ -30,27 +29,6 @@ class RedParticle(ParticleHandler):
 		dx, dy = self.posX - x, self.posY - y
 
 		return dx*math.exp(-dx*dx), dy*math.exp(-dy*dy)
-
-	def update(self, pGroups, dt):
-		""" Called at the start of each frame. Update x and y here """
-		dxB, dyB = self.baseField()
-		newX, newY = self.posX, self.posY
-
-		for pType in pGroups:
-			if pType[0].ID == "RED PARTICLE":
-				for particle in pType:
-					dx, dy = particle.F(self.posX, self.posY)
-					newX += 500*dx * dt
-					newY += 500*dy * dt
-
-			if pType[0].ID == "EXAMPLE PARTICLE":
-				for particle in pType:
-					dx, dy = particle.F(self.posX, self.posY)
-					newX -= 800*dx * dt
-					newY -= 800*dy * dt
-
-		self.posX = newX
-		self.posY = newY
 
 	def draw(self, window):
 		return pygame.draw.circle(window, color=(255, 0, 0), center=(self.posX, self.posY), radius=2)

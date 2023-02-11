@@ -10,9 +10,10 @@ from particles.particle_handler import ParticleHandler
 class GreenParticle(ParticleHandler):
 
 	def __init__(self):
-		self.ID = "EXAMPLE PARTICLE"
+		self.ID = "GREEN PARTICLE"
 		self.posY = random.randint(0, 1000)
 		self.posX = random.randint(0, 600)
+		self.m = 800
 
 	# override all the initialisers:
 	def start(self):
@@ -20,8 +21,7 @@ class GreenParticle(ParticleHandler):
 		pass
 
 	def isAffectedBy(self, particleID):
-		if particleID == "EXAMPLE PARTICLE":
-			return True
+		if particleID in ["GREEN PARTICLE", "YELLOW PARTICLE"] : return True
 
 		return False
 
@@ -30,15 +30,6 @@ class GreenParticle(ParticleHandler):
 		rn = (rx*rx + ry*ry)**0.5
 
 		return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
-
-	def update(self, pGroups, dt):
-		""" Called at the start of each frame. Update x and y here """
-		for pType in pGroups:
-			for particle in pType:
-				# dx , dy = particle.F(self.posX,self.posY)
-				dxB, dyB = self.baseField()
-				self.posX += dxB / 10000
-				self.posY += dyB / 10000
 
 	def draw(self, window):
 		pygame.draw.circle(window, color=(0, 255, 0), center=(self.posX, self.posY), radius=5)
