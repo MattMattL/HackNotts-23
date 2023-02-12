@@ -15,9 +15,12 @@ class ParticleHandler():
 	def isAffectedBy(self, particleID):
 		return False
 
-	def baseField(self):
+	def baseField(self, x=None, y=None):
 		Fx = 7*(-self.posX + 750)
 		Fy = 7*(-self.posY + 500)
+
+		Fx += 7*(self.posY - 750)
+		Fy += 7*(-self.posX + 500)
 		return Fx,Fy
 
 	def postUpdate(self):

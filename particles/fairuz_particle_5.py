@@ -48,8 +48,7 @@ def rule(atoms1, atoms2, g):
         if(a["x"] <= 0 or a["x"] >= window_size):
             a["vx"] *=-1
         if(a["y"] <= 0 or a["y"] >= window_size):
-            a["vy"] *=-1        
-
+            a["vy"] *=-1
 
 cyan = create(100, "cyan")
 magenta = create(100, "magenta")
@@ -65,8 +64,8 @@ while run:
     rule(white, white, math.sin(dtime))
 
     for i in range(len(atoms)):
-        draw(window,  atoms[i]["x"], atoms[i]["y"], atoms[i]["color"], 3)
-        
+        draw(window, atoms[i]["x"], atoms[i]["y"], atoms[i]["color"], 3)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
