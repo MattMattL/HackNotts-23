@@ -53,14 +53,15 @@ def main():
 				if 0<= particle.posX <= 1500 and 0<=particle.posY<=1000:
 					particle.draw(window)
 				else:
-					if particle.posX>1500:
-						particle.posX = rand.randint(1450,1500)
+					if particle.posX > 1500:
+						particle.posX = 3000 - particle.posX
 					else:
-						particle.posX = rand.randint(0,50)
-					if particle.posY<0:
-						particle.posY = rand.randint(0,50)
+						particle.posX = -particle.posX
+
+					if particle.posY < 0:
+						particle.posY = -particle.posY
 					else:
-						particle.posY = rand.randint(950,1000)
+						particle.posY = 2000 - particle.posY
 					particle.draw(window)
 
 

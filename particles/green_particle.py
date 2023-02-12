@@ -14,7 +14,7 @@ class GreenParticle(ParticleHandler):
 		self.ID = "GREEN PARTICLE"
 		self.posX = random.randint(0, 1500)
 		self.posY = random.randint(0, 1000)
-		self.m = 50
+		self.m = 1
 
 	# override all the initialisers:
 	def start(self):
@@ -27,7 +27,7 @@ class GreenParticle(ParticleHandler):
 		return False
 
 	def FR(self, x, y): #attract stuff
-		rx, ry = -x + self.posX, -y + self.posY
+		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
@@ -35,21 +35,21 @@ class GreenParticle(ParticleHandler):
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return (-(1 / rn**3)*rx, -(1 / rn**3)*ry)
 
 	def FG(self, x, y): #attract stuff
-		rx, ry = -x + self.posX, -y + self.posY
+		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
-		if rn <= 5: # repel
-			return 0,0
+		if rn <= 100: # repel
+			return 1/rx, 1/ry
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return (-(10 / rn)*rx, -(10 / rn)*ry)
+			return (-(1 / rn)*rx, -(1 / rn)*ry)
 
 	def FY(self, x, y): #attract stuff
-		rx, ry = -x + self.posX, -y + self.posY
+		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
@@ -57,7 +57,7 @@ class GreenParticle(ParticleHandler):
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return (-(1 / rn**3)*rx, -(1 / rn**3)*ry)
 
 	def update(self, pGroups, dt):
 		""" Called at the start of each frame. Update x and y here """
@@ -77,7 +77,6 @@ class GreenParticle(ParticleHandler):
 						deltaX, deltaY = particle.FG(self.posX, self.posY)
 						self.posX += self.m*deltaX*dt
 						self.posY += self.m*deltaY*dt
-		print (self.posX, self.posY)
 
 	def draw(self, window):
 		pygame.draw.circle(window, color=(0, 255, 0), center=(self.posX, self.posY), radius=5)

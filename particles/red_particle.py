@@ -13,7 +13,7 @@ class RedParticle(ParticleHandler):
 		self.ID = "RED PARTICLE"
 		self.posX = random.randint(0, 1500/2)
 		self.posY = random.randint(0, 1000/2)
-		self.m = 20
+		self.m = 15
 
 	# override all the initialisers:
 	def start(self):
@@ -34,7 +34,7 @@ class RedParticle(ParticleHandler):
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return 10/rn, 10/rn
+			return -10/rn, -10/rn
 
 	def FG(self, x, y): #attract stuff
 		rx, ry = x - self.posX, y - self.posY
@@ -56,7 +56,7 @@ class RedParticle(ParticleHandler):
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return (-(1 / rn**3)*rx, -(1 / rn**3)*ry)
 
 	def update(self, pGroups, dt):
 		""" Called at the start of each frame. Update x and y here """

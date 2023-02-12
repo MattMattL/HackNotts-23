@@ -10,7 +10,7 @@ class YellowParticle(ParticleHandler):
 		self.ID = "YELLOW PARTICLE"
 		self.posX = random.randint(1500/2, 1500)
 		self.posY = random.randint(0, 1000/2)
-		self.m = 1
+		self.m = 5
 
 	# override all the initialisers:
 	def start(self):
@@ -23,7 +23,7 @@ class YellowParticle(ParticleHandler):
 		return False
 
 	def FR(self, x, y): #attract stuff
-		rx, ry = -x + self.posX, -y + self.posY
+		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
@@ -31,10 +31,10 @@ class YellowParticle(ParticleHandler):
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return (-(1 / rn**3)*rx, -(1 / rn**3)*ry)
 
 	def FG(self, x, y): #attract stuff
-		rx, ry = -x + self.posX, -y + self.posY
+		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
@@ -42,10 +42,10 @@ class YellowParticle(ParticleHandler):
 		elif rn <= 10: # attract
 			return 0,0
 		else:
-			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return (-(1 / rn**3)*rx, -(1 / rn**3)*ry)
 
 	def FY(self, x, y): #attract stuff
-		rx, ry = -x + self.posX, -y + self.posY
+		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
