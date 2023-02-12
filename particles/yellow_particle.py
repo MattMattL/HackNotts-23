@@ -27,9 +27,9 @@ class YellowParticle(ParticleHandler):
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
-			return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return 0,0
 		elif rn <= 10: # attract
-			return (0, 0) if rn == 0 else ((-1 / rn**3)*rx, (-1 / rn**3)*ry)
+			return 0,0
 		else:
 			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
 
@@ -38,9 +38,9 @@ class YellowParticle(ParticleHandler):
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
-			return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return 0,0
 		elif rn <= 10: # attract
-			return (0, 0) if rn == 0 else ((-1 / rn**3)*rx, (-1 / rn**3)*ry)
+			return 0,0
 		else:
 			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
 
@@ -49,9 +49,9 @@ class YellowParticle(ParticleHandler):
 		rn = (rx*rx + ry*ry)
 
 		if rn <= 5: # repel
-			return (0, 0) if rn == 0 else ((1 / rn**3)*rx, (1 / rn**3)*ry)
+			return 0,0
 		elif rn <= 10: # attract
-			return (0, 0) if rn == 0 else ((-1 / rn**3)*rx, (-1 / rn**3)*ry)
+			return 0,0
 		else:
 			return ((1 / rn**3)*rx, (1 / rn**3)*ry)
 
@@ -63,7 +63,7 @@ class YellowParticle(ParticleHandler):
 
 		for pType in pGroups:
 			for particle in pType:
-				if particle.ID == "GREEN PARTICLE"
+				if particle.ID == "GREEN PARTICLE":
 					if (self.posX != particle.posX and self.posY != particle.posY):
 						deltaX, deltaY = particle.FG(self.posX, self.posY)
 						self.posX += self.m*deltaX*dt

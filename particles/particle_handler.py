@@ -16,22 +16,9 @@ class ParticleHandler():
 		return False
 
 	def baseField(self):
-		Fx = self.posY - 300
-		Fy = -self.posX + 500
+		Fx = 1000*(self.posY - 300)
+		Fy = 1000*(-self.posX + 500)
 		return Fx,Fy
-
-	def update(self, pGroups, dt):
-		""" Called at the start of each frame. Update x and y here """
-		dxB, dyB = self.baseField()
-		self.posX += dxB / 10000
-		self.posY += dyB / 10000
-
-		for pType in pGroups:
-			for particle in pType:
-				if (self.posX != particle.posX and self.posY != particle.posY):
-					deltaX, deltaY = particle.F(self.posX, self.posY)
-					self.posX += particle.m*deltaX*dt
-					self.posY += particle.m*deltaY*dt
 
 	def postUpdate(self):
 		pass

@@ -1,5 +1,6 @@
 import time
 import pygame
+import random as rand
 
 from particles.green_particle import GreenParticle
 from particles.yellow_particle import YellowParticle
@@ -49,7 +50,19 @@ def main():
 		# Draw particles
 		for pType in particles:
 			for particle in pType:
-				particle.draw(window)
+				if 0<= particle.posX <= 1500 and 0<=particle.posY<=1000:
+					particle.draw(window)
+				else:
+					if particle.posX>1500:
+						particle.posX = rand.randint(1450,1500)
+					else:
+						particle.posX = rand.randint(0,50)
+					if particle.posY<0:
+						particle.posY = rand.randint(0,50)
+					else:
+						particle.posY = rand.randint(950,1000)
+					particle.draw(window)
+
 
 		# Post-initialisations
 		pygame.display.update()
