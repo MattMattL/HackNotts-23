@@ -15,7 +15,7 @@ class FairuzParticle: #(ParticleHandler):
 		self.posY = random.randint(100, 500)
 		#self.radius = 5
 
-		self.window = pygame.display.set_mode((1600, 900))
+		self.window = pygame.display.set_mode((1920, 1080))
 
 
 		self.red = (255, 0, 0)
@@ -51,16 +51,16 @@ class FairuzParticle: #(ParticleHandler):
 		particle_list = []
 		for i in range(numOfParticles):
 			#color = random.choice(self.colors_list)
-			#x = random.randint(0, 1600)
-			#y = random.randint(0, 900)
+			x = random.randint(0, 1920)
+			y = random.randint(0, 1080)
 			vx = 0
 			vy = 0
-			if color == self.red:
+			""" if color == self.red:
 				x = random.randint(100, 600)
 				y = random.randint(50, 400)
 			elif color == self.cyan:
 				x = random.randint(800, 1500)
-				y = random.randint(400, 800)
+				y = random.randint(400, 800) """
 			particle_list.append(self.createParticlesDict(color, x, y, radius, vx, vy))
 		return particle_list
 
@@ -117,9 +117,9 @@ class FairuzParticle: #(ParticleHandler):
 				# update x and y
 				pass
 		"""
-		self.redParticles = self.multipleParticles(50, self.red, 5)
+		self.redParticles = self.multipleParticles(100, self.red, 3)
 
-		self.cyanParticles = self.multipleParticles(100, self.cyan, 2)
+		self.cyanParticles = self.multipleParticles(300, self.cyan, 1)
 		
 		while self.running:
 			for event in pygame.event.get():
