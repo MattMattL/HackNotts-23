@@ -16,10 +16,10 @@ class ParticleHandler():
 		return False
 
 	def baseField(self, x=None, y=None):
-		Fx = 7*(-self.posX + 750)
-		Fy = 7*(-self.posY + 500)
+		Fx = 7*(-self.posX + 1000)
+		Fy = 7*(-self.posY + 700)
 
-		Fx += 7*(self.posY - 750)
+		Fx += 7*(self.posY - 800)
 		Fy += 7*(-self.posX + 500)
 		return Fx,Fy
 

@@ -29,8 +29,8 @@ class RedParticle(ParticleHandler):
 		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
-		if rn <= 5: # repel
-			return 0,0
+		if rn <= 25: # repel
+			return 1/rx, 1/ry
 		elif rn <= 10: # attract
 			return 0,0
 		else:
@@ -40,8 +40,8 @@ class RedParticle(ParticleHandler):
 		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
-		if rn <= 5: # repel
-			return 0,0
+		if rn <= 25: # repel
+			return 1/rx, 1/ry
 		elif rn <= 10: # attract
 			return 0,0
 		else:
@@ -51,8 +51,8 @@ class RedParticle(ParticleHandler):
 		rx, ry = x - self.posX, y - self.posY
 		rn = (rx*rx + ry*ry)
 
-		if rn <= 5: # repel
-			return 0,0
+		if rn <= 25: # repel
+			return 1/rx, 1/ry
 		elif rn <= 10: # attract
 			return 0,0
 		else:

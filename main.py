@@ -13,6 +13,7 @@ from particles.particle_handler import ParticleHandler
 
 atoms=[]
 window_size = 1500
+field = ParticleHandler()
 
 def draw(surface, x, y, color, size):
     for i in range(0, size):
@@ -32,8 +33,6 @@ def create(number, color):
     return group
 
 def rule(atoms1, atoms2, g):
-    field = ParticleHandler()
-
     for i in range(len(atoms1)):
         fx = 0
         fy = 0
@@ -53,8 +52,35 @@ def rule(atoms1, atoms2, g):
         field.posX, field.posY = a["x"], a["y"]
         dxB, dyB = field.baseField()
 
-        a["x"] += a["vx"] + 0.003 * dxB
-        a["y"] += a["vy"] + 0.003 * dyB
+        a["x"] += a["vx"] + 0.002 * dxB
+        a["y"] += a["vy"] + 0.002 * dyB
+        if(a["x"] <= 0 or a["x"] >= window_size):
+            a["vx"] *=-1
+        if(a["y"] <= 0 or a["y"] >= window_size):
+            a["vy"] *=-1
+
+def rule2(type1, type2, g):
+    for i in range(len(type1)):
+        fx = 0
+        fy = 0
+        for j in range(len(type2)):
+            a = type1[i]
+            b = type2[j]
+            dx = a["x"] - b.posX
+            dy = a["y"] - b.posY
+            d = (dx*dx + dy*dy)**0.5
+            if( d > 0 and d < 80):
+                F = g/d
+                fx += F*dx
+                fy += F*dy
+        a["vx"] = (a["vx"] + fx)*0.5
+        a["vy"] = (a["vy"] + fy)*0.5
+
+        field.posX, field.posY = a["x"], a["y"]
+        dxB, dyB = field.baseField()
+
+        a["x"] += a["vx"] + 0.002 * dxB
+        a["y"] += a["vy"] + 0.002 * dyB
         if(a["x"] <= 0 or a["x"] >= window_size):
             a["vx"] *=-1
         if(a["y"] <= 0 or a["y"] >= window_size):
@@ -125,6 +151,7 @@ def main():
 		rule(cyan, cyan, -10)
 		rule(white, white, math.sin(deltaTime))
 		rule(white, magenta, -10)
+        # rule2(cyan, particles[0], 10)
 
 		for i in range(len(atoms)):
 			draw(window, atoms[i]["x"], atoms[i]["y"], atoms[i]["color"], 3)
