@@ -151,7 +151,7 @@ def main():
 		rule(cyan, cyan, -10)
 		rule(white, white, math.sin(deltaTime))
 		rule(white, magenta, -10)
-        # rule2(cyan, particles[0], 10)
+		# rule2(cyan, particles[0], 10)
 
 		for i in range(len(atoms)):
 			draw(window, atoms[i]["x"], atoms[i]["y"], atoms[i]["color"], 3)
